@@ -25,6 +25,14 @@ bool init(){
     
     App.renderer = SDL_CreateRenderer(App.root, -1, SDL_RENDERER_ACCELERATED);
     
+    if (!App.renderer)
+    {
+        printf("Failed to create renderer: %s\n", SDL_GetError());
+        return false;
+    }
+    
+    IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
+    
     return true;
 }
 
