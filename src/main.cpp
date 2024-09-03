@@ -5,6 +5,7 @@
 
 #include "app.hpp"
 #include "sprite.hpp"
+#include "draw.hpp"
 
 using namespace std;
 
@@ -14,10 +15,7 @@ int main(){
     if (!init()){
         return 1;
     }
-
-    Sprite t("assets/Ketonian-flag.png");
     
-
     while (true){
         SDL_Event event;
 
@@ -33,10 +31,7 @@ int main(){
                     break;
             }
         }
-        SDL_SetRenderDrawColor(App.renderer, 96, 128, 255, 255);
-        SDL_RenderClear(App.renderer);
-        t.draw(0,0);
-        SDL_RenderPresent(App.renderer);
+        drawScene();
     }
 
     deinit();
