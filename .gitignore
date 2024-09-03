@@ -2,3 +2,10 @@
 build/*
 *.o
 revenge-Blade
+*.cmake
+bin/*
+Blade
+CMakeFiles/*
+Makefile
+CMakeCache.txt
+
