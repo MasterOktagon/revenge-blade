@@ -5,6 +5,7 @@
 
 #include "app.hpp"
 #include "sprite.hpp"
+#include "helper.h"
 
 using namespace std;
 
@@ -22,6 +23,16 @@ void Sprite::draw(int x, int y){
 
     dest.x = x;
     dest.y = y;
+    SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
+
+    SDL_RenderCopy(App.renderer, texture, NULL, &dest);
+}
+
+void Sprite::draw(Vector2D<int> pos){
+    SDL_Rect dest;
+
+    dest.x = pos.x;
+    dest.y = pos.y;
     SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
 
     SDL_RenderCopy(App.renderer, texture, NULL, &dest);

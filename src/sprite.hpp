@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <string>
 
+#include "helper.h"
+
 using namespace std;
 
 class Sprite {
@@ -24,6 +26,11 @@ Base renderable sprite class
         */
         
         void draw(int x, int y);
+        /*
+        draw this sprite on the App root screen at this position
+        */
+        
+        void draw(Vector2D<int> pos);
         /*
         draw this sprite on the App root screen at this position
         */
