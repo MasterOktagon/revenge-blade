@@ -1,7 +1,7 @@
 
-#include <iostream>
-#include <cstdio>
 #include <SDL2/SDL.h>
+#include <cstdio>
+#include <iostream>
 
 #include "app.hpp"
 
