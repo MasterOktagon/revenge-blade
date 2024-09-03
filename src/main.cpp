@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "app.hpp"
+#include "sprite.hpp"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ int main(){
         return 1;
     }
 
+    Sprite t("assets/Ketonian-flag.png");
     
 
     while (true){
@@ -31,7 +33,12 @@ int main(){
                     break;
             }
         }
+        SDL_SetRenderDrawColor(App.renderer, 96, 128, 255, 255);
+        SDL_RenderClear(App.renderer);
+        t.draw(0,0);
+        SDL_RenderPresent(App.renderer);
     }
 
+    deinit();
     return 0;
 }

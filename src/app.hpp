@@ -18,3 +18,8 @@ init and create the window
 
 [return] true if no errors occured
 */
+
+extern void deinit();
+
+
+

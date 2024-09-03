@@ -1,6 +1,7 @@
 
 #include "app.hpp"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <iostream>
 
 
@@ -34,6 +35,11 @@ bool init(){
     IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
     
     return true;
+}
+
+void deinit(){
+    SDL_DestroyRenderer(App.renderer);
+    SDL_DestroyWindow(App.root);
 }
 
 
