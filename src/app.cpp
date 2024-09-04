@@ -14,7 +14,8 @@ bool init(){
         return false;
     }
     
-    App.root = SDL_CreateWindow("A Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_WIDTH, SDL_WINDOW_RESIZABLE);
+    int windowFlags = SDL_WINDOW_RESIZABLE;
+    App.root = SDL_CreateWindow("A Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_WIDTH, windowFlags);
     
     if (!App.root)
     {
