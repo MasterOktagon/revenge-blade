@@ -6,8 +6,8 @@ default: main
 link := -I"/usr/local/include/SDL2" -L"/usr/lib/x86_64-linux-gnu" -lSDL2 -lSDL2_image -I"./src"
 
 
-main: app.o main.o sprite.o helper.o draw.o
-	g++ build/main.o build/app.o build/sprite.o build/draw.o build/helper.o build/userinput.o -o revenge-Blade $(link)
+main: app.o main.o sprite.o helper.o draw.o userinput.o
+	g++ build/main.o build/helper.o build/app.o build/sprite.o build/draw.o build/userinput.o -o revenge-Blade $(link)
 
 main.o: src/main.cpp
 	g++ -c src/main.cpp -o build/main.o $(link)
@@ -24,7 +24,7 @@ helper.o: src/helper.cpp src/helper.h
 sprite.o: src/sprite.cpp src/sprite.hpp
 	g++ -c src/sprite.cpp -o build/sprite.o $(link)
 
-sprite.o: src/userinput.cpp src/userinput.h
+userinput.o: src/userinput.cpp src/userinput.h
 	g++ -c src/userinput.cpp -o build/userinput.o $(link)
 
 clean:
