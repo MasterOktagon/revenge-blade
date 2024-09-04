@@ -18,4 +18,13 @@ template <typename T> Vector2D<T> Vector2D<T>::operator*(T scalar) {
   return Vector2D(x * scalar, y * scalar);
 }
 
-template class Vector2D<int32_t>; // doesnt work without this, idk why
+template class Vector2D<int32_t>;
+
+template <typename T> Vector3D<T> Vector3D<T>::operator+(Vector3D v2) {
+  return Vector3D(x + v2.x, y + v2.y, z + v2.z);
+}
+template <typename T> Vector3D<T> Vector3D<T>::operator-(Vector3D v2) {
+  return Vector3D(x - v2.x, y - v2.y, z - v2.z);
+}
+
+template class Vector3D<int32_t>;
