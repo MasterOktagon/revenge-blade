@@ -1,34 +1,29 @@
 #pragma once
 
 #include "helper.h"
-#include "weapon.h"
 #include "sprite.hpp"
+#include "weapon.h"
 #include <stdint.h>
 #include <vector>
 
 using namespace std;
-
-
-class Box {
-public:
-  Vector2D<int32_t> pos;
-  Vector2D<int32_t> dim;
-  Box(Vector2D<int32_t> pos, Vector2D<int32_t> dim) : pos(pos), dim(dim){};
-};
 
 class Hitbox {
 public:
   Vector3D<int32_t> dim;
   Vector3D<int32_t> pos;
   bool collides(Hitbox hitbox2);
+  Spritesheet *sprite = nullptr;
   Hitbox(Vector3D<int32_t> dim, Vector3D<int32_t> pos) {
     this->pos = pos;
     this->dim = dim;
   };
   iVector2D get2DPos();
-  Hitbox(){dim = Vector3D<int32_t>(0,0,0); pos = Vector3D<int32_t>(0,0,0);};
+  Hitbox() {
+    dim = Vector3D<int32_t>(0, 0, 0);
+    pos = Vector3D<int32_t>(0, 0, 0);
+  };
   virtual void draw(iVector2D offset);
-  Box getDrawBox();
 };
 
 class Entity : public Hitbox {
@@ -53,12 +48,11 @@ public:
 
 class Player : public ItsAlive {
 public:
-  Spritesheet* sprite = nullptr;
   vector<Weapon> weapons;
   int32_t currentWeapon;
   void switchWeapon();
   void useWeapon();
-  
+
   void draw(iVector2D offset);
   Player(Vector3D<int32_t> dim, Vector3D<int32_t> pos, float speed,
          int32_t energy)
