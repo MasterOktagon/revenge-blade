@@ -14,10 +14,10 @@ Vector2D<int32_t> mousePos() {
 class MovementKey { // TODO: are there dataclasses?
 public:
   chrono::time_point<chrono::system_clock> timestamp;
-  Vector2D<int32_t> movement_vector;
+  Vector3D<int32_t> movement_vector;
   SDL_Scancode key;
   bool pressed;
-  MovementKey(SDL_Scancode key, Vector2D<int32_t> movement_vector) {
+  MovementKey(SDL_Scancode key, Vector3D<int32_t> movement_vector) {
     this->key = key;
     this->movement_vector = movement_vector;
     this->timestamp = chrono::system_clock::now();
@@ -25,10 +25,10 @@ public:
   }
 };
 
-MovementKey key_w = MovementKey(SDL_SCANCODE_W, Vector2D<int32_t>(0, -1));
-MovementKey key_a = MovementKey(SDL_SCANCODE_A, Vector2D<int32_t>(-1, 0));
-MovementKey key_s = MovementKey(SDL_SCANCODE_S, Vector2D<int32_t>(0, 1));
-MovementKey key_d = MovementKey(SDL_SCANCODE_D, Vector2D<int32_t>(1, 0));
+MovementKey key_w = MovementKey(SDL_SCANCODE_W, Vector3D<int32_t>(0, -1, 0));
+MovementKey key_a = MovementKey(SDL_SCANCODE_A, Vector3D<int32_t>(-1, 0, 0));
+MovementKey key_s = MovementKey(SDL_SCANCODE_S, Vector3D<int32_t>(0, 1, 0));
+MovementKey key_d = MovementKey(SDL_SCANCODE_D, Vector3D<int32_t>(1, 0, 0));
 
 vector<MovementKey> movement_keys = {key_w, key_a, key_s, key_d};
 
@@ -38,7 +38,6 @@ void observeMovement(Player &player) {
   for (MovementKey &key : movement_keys) {
     bool state = keyboard_state[key.key];
     if (state) {
-      cout << "pressed" << endl;
       if (!key.pressed) {
         key.pressed = true;
         key.timestamp = chrono::system_clock::now();
@@ -47,13 +46,10 @@ void observeMovement(Player &player) {
                           chrono::system_clock::now() - key.timestamp)
                           .count();
       int32_t count = delta / timedelta_for_movement;
-      cout << count << endl;
       player.pos = player.pos + key.movement_vector * count;
-      cout << player.pos.x << " " << player.pos.y << endl;
       key.timestamp =
           key.timestamp + chrono::milliseconds(count * timedelta_for_movement);
     } else {
-      cout << "not pressed" << endl;
       key.pressed = false;
     }
   }

@@ -26,5 +26,8 @@ template <typename T> Vector3D<T> Vector3D<T>::operator+(Vector3D v2) {
 template <typename T> Vector3D<T> Vector3D<T>::operator-(Vector3D v2) {
   return Vector3D(x - v2.x, y - v2.y, z - v2.z);
 }
+template <typename T> Vector3D<T> Vector3D<T>::operator*(T scalar) {
+  return Vector3D(x * scalar, y * scalar, z * scalar);
+}
 
 template class Vector3D<int32_t>;

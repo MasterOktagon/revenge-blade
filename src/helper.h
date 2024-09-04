@@ -25,8 +25,10 @@ public:
     this->y = y;
     this->z = z;
   };
+  Vector3D(){};
   Vector3D operator+(Vector3D v2);
   Vector3D operator-(Vector3D v2);
+  Vector3D operator*(T scalar);
 };
 
 using uVector2D = Vector2D<unsigned int>;

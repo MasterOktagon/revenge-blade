@@ -16,7 +16,7 @@ int main() {
   if (!init()) {
     return 1;
   }
-  Player player = Player();
+  Player player = dummyPlayer();
 
   Vector2D<int32_t> pos(0, 0);
   while (true) {
