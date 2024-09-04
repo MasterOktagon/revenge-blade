@@ -16,14 +16,14 @@ int main() {
   if (!init()) {
     return 1;
   }
+  Player player = Player();
 
   Vector2D<int32_t> pos(0, 0);
   while (true) {
     SDL_Event event;
-    pos = mousePos();
-    cout << pos.x << " " << pos.y << endl;
 
     while (SDL_PollEvent(&event)) {
+      observeMovement(player, event);
       switch (event.type) {
       case SDL_QUIT:
         exit(0);
@@ -33,6 +33,7 @@ int main() {
         break;
       }
     }
+    cout << "Playerpos: " << player.pos.x << " " << player.pos.y << endl;
     drawScene();
     SDL_RenderPresent(App.renderer);
   }
