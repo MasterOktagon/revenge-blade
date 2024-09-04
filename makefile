@@ -5,7 +5,6 @@ CFLAGS=-Wall -Wextra -Werror -I$(INC_DIR)
 default: main
 link := -I"/usr/local/include/SDL2" -L"/usr/lib/x86_64-linux-gnu" -lSDL2 -lSDL2_image -I"./src"
 
-
 main: app.o main.o sprite.o helper.o draw.o userinput.o character.o weapon.o
 	g++ build/main.o build/app.o build/sprite.o build/draw.o build/helper.o build/userinput.o build/character.o build/weapon.o -o revenge-Blade $(link)
 
