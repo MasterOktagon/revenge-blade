@@ -22,8 +22,8 @@ int main() {
   while (true) {
     SDL_Event event;
 
+    observeMovement(player);
     while (SDL_PollEvent(&event)) {
-      observeMovement(player, event);
       switch (event.type) {
       case SDL_QUIT:
         exit(0);

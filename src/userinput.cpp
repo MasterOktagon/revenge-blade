@@ -32,12 +32,13 @@ MovementKey key_d = MovementKey(SDL_SCANCODE_D, Vector2D<int32_t>(1, 0));
 
 vector<MovementKey> movement_keys = {key_w, key_a, key_s, key_d};
 
-void observeMovement(Player &player, SDL_Event event) {
+void observeMovement(Player &player) {
   int32_t timedelta_for_movement = 1000 / player.speed;
   auto keyboard_state = SDL_GetKeyboardState(NULL);
   for (MovementKey &key : movement_keys) {
     bool state = keyboard_state[key.key];
     if (state) {
+      cout << "pressed" << endl;
       if (!key.pressed) {
         key.pressed = true;
         key.timestamp = chrono::system_clock::now();
@@ -52,6 +53,7 @@ void observeMovement(Player &player, SDL_Event event) {
       key.timestamp =
           key.timestamp + chrono::milliseconds(count * timedelta_for_movement);
     } else {
+      cout << "not pressed" << endl;
       key.pressed = false;
     }
   }

@@ -9,4 +9,4 @@
 using namespace std;
 Vector2D<int32_t> mousePos();
 
-void observeMovement(Player &player, SDL_Event event);
+void observeMovement(Player &player);
