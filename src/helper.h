@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 
 template <typename T> class Vector2D {
 public:
@@ -17,3 +18,4 @@ public:
 
 using uVector2D = Vector2D<unsigned int>;
 using fVector2D = Vector2D<float>;
+using iVector2D = Vector2D<int32_t>;

@@ -7,6 +7,7 @@
 #include "draw.hpp"
 #include "sprite.hpp"
 #include "userinput.h"
+#include "map.hpp"
 
 using namespace std;
 
@@ -16,7 +17,12 @@ int main() {
   if (!init()) {
     return 1;
   }
+  gmap::init();
   Player player = Player();
+  
+  Map gamemap(Vector2D(10,10));
+  gamemap.scene.insert(gamemap.scene.begin(),&player);
+  gamemap.referenceEntity = &player;
 
   Vector2D<int32_t> pos(0, 0);
   while (true) {
@@ -33,8 +39,11 @@ int main() {
         break;
       }
     }
-    cout << "Playerpos: " << player.pos.x << " " << player.pos.y << endl;
+    //cout << "Playerpos: " << player.pos.x << " " << player.pos.y << endl;
     drawScene();
+    //player.draw(player.pos);
+    gamemap.draw();
+    //s.draw(player.pos.x, player.pos.y, uVector2D(0,0));
     SDL_RenderPresent(App.renderer);
   }
   deinit();

@@ -5,8 +5,8 @@ CFLAGS=-Wall -Wextra -Werror -I$(INC_DIR)
 default: main
 link := -I"/usr/local/include/SDL2" -L"/usr/lib/x86_64-linux-gnu" -lSDL2 -lSDL2_image -I"./src"
 
-main: app.o main.o sprite.o helper.o draw.o userinput.o character.o weapon.o
-	g++ build/main.o build/app.o build/sprite.o build/draw.o build/helper.o build/userinput.o build/character.o build/weapon.o -o revenge-Blade $(link)
+main: app.o main.o sprite.o helper.o draw.o userinput.o character.o weapon.o map.o
+	g++ build/main.o build/app.o build/sprite.o build/draw.o build/helper.o build/userinput.o build/character.o build/weapon.o build/map.o -o revenge-Blade $(link)
 
 main.o: src/main.cpp
 	g++ -c src/main.cpp -o build/main.o $(link)
@@ -31,6 +31,9 @@ character.o: src/character.cpp src/character.h
 
 weapon.o: src/weapon.cpp src/weapon.h
 	g++ -c src/weapon.cpp -o build/weapon.o $(link)
+	
+map.o: src/map.cpp src/map.hpp
+	g++ -c src/map.cpp -o build/map.o $(link)
 
 clean:
 	-rm -f build/main.o

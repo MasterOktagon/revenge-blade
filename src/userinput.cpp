@@ -53,7 +53,7 @@ void observeMovement(Player &player) {
       key.timestamp =
           key.timestamp + chrono::milliseconds(count * timedelta_for_movement);
     } else {
-      cout << "not pressed" << endl;
+      //cout << "not pressed" << endl;
       key.pressed = false;
     }
   }
