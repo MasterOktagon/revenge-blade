@@ -15,9 +15,9 @@ class MovementKey { // TODO: are there dataclasses?
 public:
   chrono::time_point<chrono::system_clock> timestamp;
   Vector2D<int32_t> movement_vector;
-  SDL_Keycode key;
+  SDL_Scancode key;
   bool pressed;
-  MovementKey(SDL_Keycode key, Vector2D<int32_t> movement_vector) {
+  MovementKey(SDL_Scancode key, Vector2D<int32_t> movement_vector) {
     this->key = key;
     this->movement_vector = movement_vector;
     this->timestamp = chrono::system_clock::now();
@@ -25,17 +25,19 @@ public:
   }
 };
 
-MovementKey key_w = MovementKey(SDLK_w, Vector2D<int32_t>(0, -1));
-MovementKey key_a = MovementKey(SDLK_a, Vector2D<int32_t>(-1, 0));
-MovementKey key_s = MovementKey(SDLK_s, Vector2D<int32_t>(0, 1));
-MovementKey key_d = MovementKey(SDLK_d, Vector2D<int32_t>(1, 0));
+MovementKey key_w = MovementKey(SDL_SCANCODE_W, Vector2D<int32_t>(0, -1));
+MovementKey key_a = MovementKey(SDL_SCANCODE_A, Vector2D<int32_t>(-1, 0));
+MovementKey key_s = MovementKey(SDL_SCANCODE_S, Vector2D<int32_t>(0, 1));
+MovementKey key_d = MovementKey(SDL_SCANCODE_D, Vector2D<int32_t>(1, 0));
 
 vector<MovementKey> movement_keys = {key_w, key_a, key_s, key_d};
 
 void observeMovement(Player &player, SDL_Event event) {
   int32_t timedelta_for_movement = 1000 / player.speed;
+  auto keyboard_state = SDL_GetKeyboardState(NULL);
   for (MovementKey &key : movement_keys) {
-    if (event.key.keysym.sym == key.key && event.type == SDL_KEYDOWN) {
+    bool state = keyboard_state[key.key];
+    if (state) {
       if (!key.pressed) {
         key.pressed = true;
         key.timestamp = chrono::system_clock::now();
@@ -49,7 +51,7 @@ void observeMovement(Player &player, SDL_Event event) {
       cout << player.pos.x << " " << player.pos.y << endl;
       key.timestamp =
           key.timestamp + chrono::milliseconds(count * timedelta_for_movement);
-    } else if (event.key.keysym.sym == key.key && event.type == SDL_KEYUP) {
+    } else {
       key.pressed = false;
     }
   }
