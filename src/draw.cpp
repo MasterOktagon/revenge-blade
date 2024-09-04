@@ -9,7 +9,6 @@ void drawScene(){
     SDL_SetRenderDrawColor(App.renderer, 0, 0, 0, 255);
     SDL_RenderClear(App.renderer);
     
-    SDL_RenderPresent(App.renderer);
 
 }
 

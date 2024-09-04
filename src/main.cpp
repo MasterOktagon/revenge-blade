@@ -32,6 +32,7 @@ int main(){
             }
         }
         drawScene();
+        SDL_RenderPresent(App.renderer);
     }
 
     deinit();
