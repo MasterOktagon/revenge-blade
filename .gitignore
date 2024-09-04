@@ -8,4 +8,4 @@ Blade
 CMakeFiles/*
 Makefile
 CMakeCache.txt
-
+test/*
