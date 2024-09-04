@@ -25,7 +25,9 @@ public:
     this->pos = pos;
     this->dim = dim;
   };
-  virtual void draw();
+  iVector2D get2DPos();
+  Hitbox(){dim = Vector3D<int32_t>(0,0,0); pos = Vector3D<int32_t>(0,0,0);};
+  virtual void draw(iVector2D offset);
   Box getDrawBox();
 };
 
@@ -34,7 +36,7 @@ public:
   float speed;
   Entity(Vector3D<int32_t> dim, Vector3D<int32_t> pos, float speed)
       : Hitbox(dim, pos), speed(speed){};
-  virtual void draw();
+  virtual void draw(iVector2D offset);
 };
 
 // class Bullet : public Entity {
@@ -56,7 +58,6 @@ public:
   int32_t currentWeapon;
   void switchWeapon();
   void useWeapon();
-  Player();
   
   void draw(iVector2D offset);
   Player(Vector3D<int32_t> dim, Vector3D<int32_t> pos, float speed,

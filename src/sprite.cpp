@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <iostream>
 
 #include "app.hpp"
 #include "sprite.hpp"
@@ -69,7 +70,7 @@ void Spritesheet::draw(int x, int y, uVector2D indices){
     SDL_QueryTexture(texture, NULL, NULL, &w, &h);
     
     index.x = indices.x*int(w/sheetSize.x);
-    index.y = indices.y*int(w/sheetSize.x);
+    index.y = indices.y*int(h/sheetSize.y);
     
     dest.w = int(w/sheetSize.x);
     dest.h = int(h/sheetSize.y);
@@ -85,15 +86,18 @@ void Spritesheet::draw(Vector2D<int> pos, uVector2D indices){
 
     dest.x = pos.x;
     dest.y = pos.y;
-    index.x = indices.x;
-    index.x = indices.y;
     int w,h;
     SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+    
+    index.x = indices.x*int(w/sheetSize.x);
+    index.y = indices.y*int(h/sheetSize.y);
     
     dest.w = int(w/sheetSize.x);
     dest.h = int(h/sheetSize.y);
     index.w = int(w/sheetSize.x);
     index.h = int(h/sheetSize.y);
+    
+    cout << "draw index: {" << index.x << "," << index.y << "}{" << index.w << "," << index.h << "}" << endl;
 
     SDL_RenderCopy(App.renderer, texture, &index, &dest);
 }

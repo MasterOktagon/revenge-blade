@@ -16,6 +16,10 @@ Box Hitbox::getDrawBox() {
   return Box(box_pos, box_dim);
 }
 
+iVector2D Hitbox::get2DPos(){
+    return iVector2D(-pos.x + pos.y, -int(pos.x/2) - int(pos.y/2) + pos.z);
+}
+
 void Player::switchWeapon() {
   currentWeapon = (currentWeapon + 1) % weapons.size();
 }
@@ -24,29 +28,22 @@ void Player::useWeapon() {
   this->energy -= weapons.at(currentWeapon).energy_drain;
 }
 
-Player::Player() {
-  weapons.push_back(Jokegun());
-  currentWeapon = 0;
-  energy = 100;
-  speed = 100;
-  pos = Vector2D<int32_t>(0, 0);
-  sprite = new Spritesheet("assets/characters/outlaw.png", uVector2D(29,1));  
-}
-
 void Player::draw(iVector2D offset){
-    sprite->draw(pos + offset, uVector2D(0,0));
+    sprite->draw(get2DPos() + offset, uVector2D(0,0));
+}
     
-void Hitbox::draw() {};
+void Hitbox::draw(iVector2D offset) {};
 
 Player dummyPlayer() {
   Player p = Player{
       Vector3D<int32_t>(20, 120, 70),
       Vector3D<int32_t>(0, 100, 100),
-      10,
+      100,
       100,
   };
+  p.sprite = new Spritesheet("assets/characters/outlaw.png", uVector2D(29,1));  
   p.weapons.push_back(Jokegun());
   return p;
 }
 
-void Entity::draw() {};
+void Entity::draw(iVector2D offset) {};

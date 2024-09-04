@@ -36,14 +36,16 @@ void gmap::init(){
 
 Tile::Tile(TileType* t, Vector2D<int> pos){
     type = t;
-    mapPos = pos;
-    this->pos = Vector2D(pos.x * 32 + pos.y * -32, pos.x * 16 + pos.y * 16);
+    //mapPos = pos;
+    iVector2D gpos = get2DPos();
+    this->pos = Vector3D(pos.x*32, pos.y*32, 0);
 }
 
 void Tile::draw(iVector2D offset){
+    iVector2D pos2 = get2DPos();
     cout << "Tile::draw()" << endl;
-    cout << "Tile pos: {" << pos.x << "," << pos.y << "}" << endl;
-    type->draw(pos + offset, uVector2D(0,0));
+    cout << "Tile pos: {" << pos2.x << "," << pos2.y << "}" << endl;
+    type->draw(pos2 + offset, uVector2D(0,0));
 }
 
 /////////////////////////////////////////////////////
@@ -62,7 +64,7 @@ Map::Map(Vector2D<int> dim){
 }
 
 bool comp (Hitbox* h1, Hitbox* h2){
-    return h1->pos.y > h2->pos.y;
+    return h1->pos.x+h1->pos.y < h2->pos.y + h2->pos.x ;
 }
 
 void Map::draw(){
@@ -71,7 +73,7 @@ void Map::draw(){
     SDL_GetRendererOutputSize(App.renderer, &screenWidth, &screenHeight);
     
     if (referenceEntity != nullptr){
-        offset = referenceEntity->pos*-1;
+        offset = referenceEntity->get2DPos()*-1;
     }
     offset = offset + iVector2D(int(screenWidth/2), int(screenHeight/2));
     scene.sort(comp);
