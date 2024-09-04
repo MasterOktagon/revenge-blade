@@ -17,8 +17,9 @@ int main() {
   if (!init()) {
     return 1;
   }
+
   gmap::init();
-  Player player = Player();
+  Player player = dummyPlayer();
   
   Map gamemap(Vector2D(10,10));
   gamemap.scene.insert(gamemap.scene.begin(),&player);
