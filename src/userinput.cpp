@@ -25,10 +25,10 @@ public:
   }
 };
 
-MovementKey key_w = MovementKey(SDL_SCANCODE_W, Vector3D<int32_t>(0, -1, 0));
-MovementKey key_a = MovementKey(SDL_SCANCODE_A, Vector3D<int32_t>(-1, 0, 0));
-MovementKey key_s = MovementKey(SDL_SCANCODE_S, Vector3D<int32_t>(0, 1, 0));
-MovementKey key_d = MovementKey(SDL_SCANCODE_D, Vector3D<int32_t>(1, 0, 0));
+MovementKey key_w = MovementKey(SDL_SCANCODE_W, Vector3D<int32_t>( 2,  2, 0));
+MovementKey key_a = MovementKey(SDL_SCANCODE_A, Vector3D<int32_t>( 1, -1, 0));
+MovementKey key_s = MovementKey(SDL_SCANCODE_S, Vector3D<int32_t>(-2, -2, 0));
+MovementKey key_d = MovementKey(SDL_SCANCODE_D, Vector3D<int32_t>(-1,  1, 0));
 
 vector<MovementKey> movement_keys = {key_w, key_a, key_s, key_d};
 
