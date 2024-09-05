@@ -28,9 +28,13 @@ Sprite::~Sprite(){
 void Sprite::draw(int x, int y){
     SDL_Rect dest;
 
-    dest.x = x;
-    dest.y = y;
-    SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
+    int w,h;
+    SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+    
+    dest.x = x-int(w/2);
+    dest.y = y-h;
+    dest.w = w;
+    dest.h = h;
 
     SDL_RenderCopy(App.renderer, texture, NULL, &dest);
 }
@@ -38,9 +42,13 @@ void Sprite::draw(int x, int y){
 void Sprite::draw(Vector2D<int> pos){
     SDL_Rect dest;
 
-    dest.x = pos.x;
-    dest.y = pos.y;
-    SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
+    int w,h;
+    SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+    
+    dest.x = pos.x-int(w/2);
+    dest.y = pos.y-h;
+    dest.w = w;
+    dest.h = h;
 
     SDL_RenderCopy(App.renderer, texture, NULL, &dest);
 }
@@ -64,10 +72,11 @@ void Spritesheet::draw(int x, int y, uVector2D indices){
     SDL_Rect dest;
     SDL_Rect index;
 
-    dest.x = x;
-    dest.y = y;
     int w,h;
     SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+
+    dest.x = x-int(w/2/sheetSize.x);
+    dest.y = y-int(h/sheetSize.y);    
     
     index.x = indices.x*int(w/sheetSize.x);
     index.y = indices.y*int(h/sheetSize.y);
@@ -84,10 +93,12 @@ void Spritesheet::draw(Vector2D<int> pos, uVector2D indices){
     SDL_Rect dest;
     SDL_Rect index;
 
-    dest.x = pos.x;
-    dest.y = pos.y;
     int w,h;
     SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+
+    dest.x = pos.x-int(w/2/sheetSize.x);
+    dest.y = pos.y-int(h/sheetSize.y);    
+    
     
     index.x = indices.x*int(w/sheetSize.x);
     index.y = indices.y*int(h/sheetSize.y);

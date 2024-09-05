@@ -64,7 +64,7 @@ Map::Map(Vector2D<int> dim){
 }
 
 bool comp (Hitbox* h1, Hitbox* h2){
-    return h1->pos.x+h1->pos.y < h2->pos.y + h2->pos.x ;
+    return h1->get2DPos().y < h2->get2DPos().y ;
 }
 
 void Map::draw(){
