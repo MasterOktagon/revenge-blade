@@ -30,8 +30,8 @@ void Hitbox::draw(iVector2D offset) {};
 
 Player dummyPlayer() {
   Player p = Player{
-      Vector3D<int32_t>(20, 120, 70),
-      Vector3D<int32_t>(0, 100, 100),
+      Vector3D<int32_t>(30, 30, 70),
+      Vector3D<int32_t>(0, 70, 100),
       100,
       100,
   };
